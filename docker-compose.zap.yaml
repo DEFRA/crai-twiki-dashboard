@@ -1,0 +1,19 @@
+services:
+  ? crai-twiki-dashboard
+  : command: npm run start:watch
+    build:
+      target: development
+    image: crai-twiki-dashboard-development
+    environment:
+      NODE_ENV: test
+    volumes:
+      - ./test-output:/home/node/test-output
+
+  zap-baseline-scan:
+    image: softwaresecurityproject/zap-bare:2.14.0
+    command: zap.sh -cmd -quickurl ${TEST_ENVIRONMENT_ROOT_URL:-http://crai-twiki-dashboard:3000} -zapit ${TEST_ENVIRONMENT_ROOT_URL:-http://crai-twiki-dashboard:3000} -configfile config/zap.conf -quickout test-output/zap-report.html -silent -quickprogress
+    depends_on:
+      - crai-twiki-dashboard
+    volumes:
+      - ./test-output:/zap/test-output
+      - ./zap:/zap/config

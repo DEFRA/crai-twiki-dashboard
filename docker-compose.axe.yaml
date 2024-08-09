@@ -1,0 +1,24 @@
+services:
+  ? crai-twiki-dashboard
+  : command: npm run start:watch
+    build:
+      target: development
+    image: crai-twiki-dashboard-development
+    environment:
+      NODE_ENV: test
+    volumes:
+    - ./test-output:/home/node/test-output
+
+  axe:
+    image: defradigital/ffc-axe
+    depends_on:
+      - crai-twiki-dashboard
+    command:
+      - /bin/sh
+      - -c
+      - |
+        sleep 10
+        /scripts/wait ${TEST_ENVIRONMENT_ROOT_URL:-crai-twiki-dashboard:3000} -- axe --dir=test-output -s axe.json --report=test-output --format=junit --exclude ".govuk-skip-link,.govuk-breadcrumbs"  --chrome-options="no-sandbox,disable-setuid-sandbox,disable-dev-shm-usage" --chromedriver-path=/usr/bin/chromedriver --exit  ${TEST_ENVIRONMENT_ROOT_URL:-crai-twiki-dashboard:3000}
+    volumes:
+      - ./test-output/axe:/home/node/test-output
+      - ./scripts:/scripts

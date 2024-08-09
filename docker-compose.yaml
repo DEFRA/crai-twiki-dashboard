@@ -1,0 +1,10 @@
+services:
+  ? crai-twiki-dashboard
+  : build:
+      context: .
+      target: production
+    image: crai-twiki-dashboard
+    container_name: crai-twiki-dashboard
+    environment:
+      APPINSIGHTS_CLOUDROLE: crai-twiki-dashboard-local
+      APPINSIGHTS_CONNECTIONSTRING: ${APPINSIGHTS_CONNECTIONSTRING}

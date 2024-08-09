@@ -1,0 +1,4 @@
+{{- include "adp-helm-library.cluster-ip-service" (list . "crai-twiki-dashboard.cluster-ip-service") -}}
+{{- define "crai-twiki-dashboard.cluster-ip-service" -}}
+{{- end -}}
+

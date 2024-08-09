@@ -1,0 +1,3 @@
+{{- include "adp-helm-library.azure-ingress" (list . "crai-twiki-dashboard.ingress") -}}
+{{- define "crai-twiki-dashboard.ingress" -}}
+{{- end -}}
