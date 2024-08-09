@@ -1,0 +1,53 @@
+ {# Backstage scaffolder to render the file as is and to skip this content to interpret as template   #}
+{% extends '_layout.njk' %}
+
+{% from "govuk/components/breadcrumbs/macro.njk" import govukBreadcrumbs %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
+
+{% block beforeContent %}
+        {{ govukBreadcrumbs({
+          items: [
+            {
+              text: "Home",
+              href: "/"
+            },
+            {
+              text: "Sessions",
+              href: "/project/" + session.project_id + "/sessions"
+            },
+            {
+              text: "Threads",
+              href: "#"
+            }]
+        }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <table class="govuk-table">
+      <caption class="govuk-table__caption govuk-table__caption--l">Threads</caption>
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Name</th>
+          <th scope="col" class="govuk-table__header">Start time</th>
+          <th scope="col" class="govuk-table__header">End time</th>
+          <th scope="col" class="govuk-table__header"></th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        {% for item in session.threads %}
+          <tr class="govuk-table__row">
+            <td class="govuk-table__cell">{{item.name}}</td>
+            <td class="govuk-table__cell">{{item.start_time}}</td>
+            <td class="govuk-table__cell">{{item.end_time}}</td>
+            <td class="govuk-table__cell"><a href="/project/thread/{{item.id}}" class="govuk-link">View</a></td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+        </div>
+  </div>
+{% endblock %}
+

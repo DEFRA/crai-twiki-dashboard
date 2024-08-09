@@ -1,0 +1,139 @@
+ {# Backstage scaffolder to render the file as is and to skip this content to interpret as template   #}
+{% extends '_layout.njk' %}
+
+{% from "govuk/components/breadcrumbs/macro.njk" import govukBreadcrumbs %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
+
+{% block beforeContent %}
+        {{ govukBreadcrumbs({
+          items: [
+            {
+              text: "Home",
+              href: "/"
+            },
+            {
+              text: "Sessions",
+              href: "/project/" + thread.session_id + "/sessions"
+            },
+            {
+              text: "Threads",
+              href: "/project/session/" + thread.session_id + "/threads"
+            },
+            {
+              text: "Steps",
+              href: "/project/thread/" + step.thread_id
+            },
+            {
+              text: "Step",
+              href: "#"
+            }]
+        }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+      <div class="govuk-summary-card">
+        <div class="govuk-summary-card__title-wrapper">
+          <h2 class="govuk-summary-card__title">
+            Step
+          </h2>
+        </div>
+        <div class="govuk-summary-card__content">
+          <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Name
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{step.name}}
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Type
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{step.type}}
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Input
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{step.input}}
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Input tokens
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{step.input_tokens}}
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Output
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{step.output}}
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Output tokens
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{step.output_tokens}}
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Model name
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{step.model_name}}
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Model Metadata
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{step.model_metadata.additionalProp1}}
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                Total cost
+              </dt>
+              <dd class="govuk-summary-list__value">
+                £0.00
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                start time
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{step.start_time}}
+              </dd>
+            </div>
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+                End time
+              </dt>
+              <dd class="govuk-summary-list__value">
+                {{step.end_time}}
+              </dd>
+            </div>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+

@@ -17,7 +17,8 @@ module.exports = {
   entry: {
     core: glob
       .sync('./app/frontend/**', { nodir: true })
-      .filter(fileName => !entrypointExtensionsDenyList.has(path.extname(fileName)))
+      .filter(fileName => !entrypointExtensionsDenyList.has(path.extname(fileName))),
+    chart: './app/frontend/js/chart.js'
   },
   mode: isDev ? 'development' : 'production',
   module: {
@@ -74,6 +75,12 @@ module.exports = {
       filename: '../views/_layout.njk',
       template: 'app/views/_layout.template.njk',
       chunks: ['core']
+    }),
+    new HtmlWebpackPlugin({
+      inject: false,
+      filename: '../views/home.njk',
+      template: 'app/views/_home.template.njk',
+      chunks: ['chart']
     }),
     new MiniCssExtractPlugin({
       filename: 'css/[name].[fullhash].css'
