@@ -10,7 +10,6 @@ module.exports = {
       const projectId = projects[0].id
       const project = await getProject(projectId)
       const projectOverview = await loadDashboard(projectId)
-      console.log(projectOverview)
       return h.view('home', { projects, project, projectOverview })
     }
   }

@@ -191,5 +191,11 @@ module.exports = {
         cost: 0
       }
     }
+  ],
+  model_cost: [
+    {
+      model_name: 'ChatGPT-4o',
+      cost_per_token: 0.005
+    }
   ]
 }
