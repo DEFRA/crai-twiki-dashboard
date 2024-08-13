@@ -35,8 +35,8 @@ module.exports = {
       appVersion: pkg.version,
       assetPath: '/static',
       govukAssetPath: '/assets',
-      serviceName: 'crai-twiki-dashboard',
-      pageTitle: 'crai-twiki-dashboard - GOV.UK'
+      serviceName: 'IG-LOG - Real time monitoring, logging and alerting',
+      pageTitle: 'IG-LOG - Real time monitoring, logging and alerting - GOV.UK'
     }
   }
 }

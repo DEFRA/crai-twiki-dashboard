@@ -97,9 +97,9 @@
       </div>
     </div>
   </div>
-
-  <script src="/static/js/chart.8edd0744e29fc47814d5.js"></script>
-
+<% htmlWebpackPlugin.files.js.forEach(file => { %>
+  <script src="<%= file.replace('../dist/', '/static/') %>"></script>
+<% }) %>
 <script>
   const sessionsPerDay = {{ projectOverview.sessionGraphData | dump | safe  }}
   const threadsPerDay = {{ projectOverview.threadGraphData | dump | safe  }}
